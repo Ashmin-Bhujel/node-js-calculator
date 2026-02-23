@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 // Pathname and dirname
 const __pathname = fileURLToPath(import.meta.url);
 const __dirname = dirname(__pathname);
-const logsDirectoryPath = join(__dirname, "./../../logs");
+const logsDirectoryPath = join(__dirname, "./../logs");
 
 // Write to log file function
 export async function writeToLogFile(logData: string) {

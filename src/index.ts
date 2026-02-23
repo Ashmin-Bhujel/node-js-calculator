@@ -2,7 +2,7 @@ import chalk from "chalk";
 import { stdin, stdout } from "node:process";
 import { createInterface } from "node:readline/promises";
 import { add, divide, multiply, subtract } from "./calulator.js";
-import { readFromLogFile, writeToLogFile } from "./utils/index.js";
+import { readFromLogFile, writeToLogFile } from "./utils.js";
 
 // Create interface
 const rl = createInterface({
