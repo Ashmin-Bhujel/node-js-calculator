@@ -16,23 +16,31 @@ async function main() {
   try {
     // Getting user input
     console.log(chalk.blue("=== Getting User Input ==="));
-    const firstNumber = parseInt(
-      await rl.question(chalk.blue("Enter first number: ")),
-    );
-    const secondNumber = parseInt(
-      await rl.question(chalk.blue("Enter second number: ")),
+    const firstNumber = await rl.question(chalk.blue("Enter first number: "));
+    const secondNumber = await rl.question(chalk.blue("Enter second number: "));
+    logData.push(
+      ...[
+        `Enter first number: ${firstNumber}`,
+        `Enter second number: ${secondNumber}`,
+      ],
     );
 
+    // Parse user input to integer
+    const parsedFirstNumber = parseInt(firstNumber);
+    const parsedSecondNumber = parseInt(secondNumber);
+
     // Validate input
-    if (isNaN(firstNumber) || isNaN(secondNumber)) {
+    if (isNaN(parsedFirstNumber) || isNaN(parsedSecondNumber)) {
       throw new Error("Please enter valid numbers");
     }
 
     // Operations
-    const sum = add(firstNumber, secondNumber);
-    const difference = subtract(firstNumber, secondNumber);
-    const product = multiply(firstNumber, secondNumber);
-    const quotient = divide(firstNumber, secondNumber).toPrecision(2);
+    const sum = add(parsedFirstNumber, parsedSecondNumber);
+    const difference = subtract(parsedFirstNumber, parsedSecondNumber);
+    const product = multiply(parsedFirstNumber, parsedSecondNumber);
+    const quotient = divide(parsedFirstNumber, parsedSecondNumber).toPrecision(
+      2,
+    );
 
     // Printing results
     console.log(chalk.green("\n=== Printing Results ==="));
@@ -40,17 +48,14 @@ async function main() {
     console.log(chalk.green(`The difference is ${difference}`));
     console.log(chalk.green(`The product is ${product}`));
     console.log(chalk.green(`The quotient is ${quotient}`));
-
-    // Adding data to log data
-    const data = [
-      `Enter first number: ${firstNumber}`,
-      `Enter second number: ${secondNumber}`,
-      `The sum is ${sum}`,
-      `The difference is ${difference}`,
-      `The product is ${product}`,
-      `The quotient is ${quotient}`,
-    ];
-    logData.push(...data);
+    logData.push(
+      ...[
+        `The sum is ${sum}`,
+        `The difference is ${difference}`,
+        `The product is ${product}`,
+        `The quotient is ${quotient}`,
+      ],
+    );
   } catch (error) {
     if (error instanceof Error) {
       console.log(chalk.red("\n=== Error ==="));

@@ -1,11 +1,9 @@
 import chalk from "chalk";
 import { mkdir, writeFile, readFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
-// Pathname and dirname
-const __pathname = fileURLToPath(import.meta.url);
-const __dirname = dirname(__pathname);
+// Dirname and path
+const __dirname = import.meta.dirname;
 const logsDirectoryPath = join(__dirname, "./../logs");
 
 // Write to log file function
